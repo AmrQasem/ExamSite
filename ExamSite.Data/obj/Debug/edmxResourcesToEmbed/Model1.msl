@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExamSiteModelStoreContainer" CdmEntityContainer="ExamSiteEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ExamSiteModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UserLogin" FunctionName="ExamSiteModel.Store.UserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ExamSiteModel.UserLogin_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Exams">
+      <EntityTypeMapping TypeName="ExamSiteModel.Exam">
+        <MappingFragment StoreEntitySet="Exams">
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="ExamDescription" ColumnName="ExamDescription" />
+          <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetAllExams" FunctionName="ExamSiteModel.Store.GetAllExams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ExamSiteModel.GetAllExams_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetExamDetails" FunctionName="ExamSiteModel.Store.GetExamDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ExamSiteModel.GetExamDetails_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+          <ScalarProperty Name="ExamDescription" ColumnName="ExamDescription" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="ExamSiteModel.Answer">
+        <MappingFragment StoreEntitySet="Answers">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="AnswerDetails" ColumnName="AnswerDetails" />
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="ExamSiteModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="QuestionTitle" ColumnName="QuestionTitle" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetAnswers" FunctionName="ExamSiteModel.Store.GetAnswers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ExamSiteModel.GetAnswers_Result">
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="AnswerDetails" ColumnName="AnswerDetails" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="QuestionTitle" ColumnName="QuestionTitle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetExamQuestions" FunctionName="ExamSiteModel.Store.GetExamQuestions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ExamSiteModel.GetExamQuestions_Result">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="QuestionTitle" ColumnName="QuestionTitle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

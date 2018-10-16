@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="ExamSiteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <FunctionImport Name="UserLogin" ReturnType="Collection(ExamSiteModel.UserLogin_Result)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Exams" EntityType="ExamSiteModel.Exam" />
+    <FunctionImport Name="GetAllExams" ReturnType="Collection(ExamSiteModel.GetAllExams_Result)" />
+    <FunctionImport Name="GetExamDetails" ReturnType="Collection(ExamSiteModel.GetExamDetails_Result)">
+      <Parameter Name="ExamID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Answers" EntityType="ExamSiteModel.Answer" />
+    <EntitySet Name="Questions" EntityType="ExamSiteModel.Question" />
+    <FunctionImport Name="GetAnswers" ReturnType="Collection(ExamSiteModel.GetAnswers_Result)">
+      <Parameter Name="QuestionID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetExamQuestions" ReturnType="Collection(ExamSiteModel.GetExamQuestions_Result)" />
+  </EntityContainer>
+  <ComplexType Name="UserLogin_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ExamDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="GetAllExams_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ExamName" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="GetExamDetails_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ExamName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ExamDescription" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Duration" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerID" />
+    </Key>
+    <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetAnswers_Result">
+    <Property Type="Int32" Name="AnswerID" Nullable="false" />
+    <Property Type="String" Name="AnswerDetails" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="QuestionID" Nullable="false" />
+    <Property Type="String" Name="QuestionTitle" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetExamQuestions_Result">
+    <Property Type="Int32" Name="QuestionID" Nullable="false" />
+    <Property Type="String" Name="QuestionTitle" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>
